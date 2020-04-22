@@ -1,7 +1,7 @@
 import React from 'react'
 import { Accordion, Button } from 'react-bootstrap'
 
-export default function MoviesCarouselItem(props, i, setMovie) {
+export default function MoviesCarouselItem(props, i, setFoundMovie) {
     const image = `https://image.tmdb.org/t/p/w200${props.poster_path}`
     
     return (
@@ -15,7 +15,10 @@ export default function MoviesCarouselItem(props, i, setMovie) {
                         width: 'fit-content',
                         height: '20vw'
                         }}
-                    onClick={ () => setMovie(props) }
+                    onClick={ (event) => { event.preventDefault(); 
+                                            setFoundMovie(props)} }
+                    onMouseEnter={ (event) => { event.preventDefault(); 
+                        setFoundMovie(props)} }
                 />
             </a>
         </Accordion.Toggle>
