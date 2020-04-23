@@ -60,35 +60,32 @@ export default class HomePage extends Component {
             <Container 
                 fluid
                 style={{
+                    height: '100%',
                     background: 'rgba(0, 0, 0)'
                 }}>
                 <Accordion>
-                    <MoviesCarousel movieList={ this.state.act } title='Action'     setMovie={ this.setMovie }   />
+                    <MoviesCarousel movieList={ this.state.act } title='Action'     setMovie={ this.setMovie }   keyValue="0"/>
                     <Accordion.Collapse eventKey="0">
                         { DisplayMovie(this.state.Action) }
                     </Accordion.Collapse>
-                </Accordion>
-                <Accordion>
-                    <MoviesCarousel movieList={ this.state.adv } title='Adventure'  setMovie={ this.setMovie }  />
-                    <Accordion.Collapse eventKey="0">
+
+                    <MoviesCarousel movieList={ this.state.adv } title='Adventure'  setMovie={ this.setMovie }  keyValue="1"/>
+                    <Accordion.Collapse eventKey="1">
                         { DisplayMovie(this.state.Adventure) }
                     </Accordion.Collapse>
-                </Accordion>
-                <Accordion>
-                    <MoviesCarousel movieList={ this.state.com } title='Comedy'     setMovie={ this.setMovie }     />
-                    <Accordion.Collapse eventKey="0">
+
+                    <MoviesCarousel movieList={ this.state.com } title='Comedy'     setMovie={ this.setMovie }  keyValue="2"/>
+                    <Accordion.Collapse eventKey="2">
                         { DisplayMovie(this.state.Comedy) }
                     </Accordion.Collapse>
-                </Accordion>
-                <Accordion>
-                    <MoviesCarousel movieList={ this.state.fam } title='Family'     setMovie={ this.setMovie }   />
-                    <Accordion.Collapse eventKey="0">
+
+                    <MoviesCarousel movieList={ this.state.fam } title='Family'     setMovie={ this.setMovie }  keyValue="3"/>
+                    <Accordion.Collapse eventKey="3">
                         { DisplayMovie(this.state.Family) }
                     </Accordion.Collapse>
-                </Accordion>
-                <Accordion>
-                    <MoviesCarousel movieList={ this.state.thr } title='Thriller'   setMovie={ this.setMovie }   />
-                    <Accordion.Collapse eventKey="0">
+
+                    <MoviesCarousel movieList={ this.state.thr } title='Thriller'   setMovie={ this.setMovie }  keyValue="4"/>
+                    <Accordion.Collapse eventKey="4">
                         { DisplayMovie(this.state.Thriller) }
                     </Accordion.Collapse>
                 </Accordion>

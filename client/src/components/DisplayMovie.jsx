@@ -1,17 +1,24 @@
 import React from 'react'
-import { Card } from 'react-bootstrap'
+import { Card, Col, Image ,Row } from 'react-bootstrap'
 
 export default function DisplayMovie(props) {
-    let image = `https://image.tmdb.org/t/p/w300${props.backdrop_path}`
+    let image = `https://image.tmdb.org/t/p/w500${props.backdrop_path}`
     
     return (
     <Card style={{ height: '25vw' }}>
         <Card.Body>
-            <Card.Img variant="Left" src={ image } width='300vw'/>
-            <Card.Title>{ props.title}</Card.Title>
-            <Card.Text>
-            { props.overview }
-            </Card.Text>
+            <Row>
+                <Col>
+                    <Image fluid src={ image }/>
+                </Col>
+                <Col>
+                    <h3>{ props.title}</h3>
+                    <h6>Rating: { props.vote_average }  -  Total votes: { props.vote_count }</h6>
+                    <Card.Text>
+                    { props.overview }
+                    </Card.Text>
+                </Col>
+            </Row>
         </Card.Body>
     </Card>
     )
