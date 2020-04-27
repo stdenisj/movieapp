@@ -12,7 +12,7 @@ function App() {
       <Navigation />
         <Switch>
           <Route exact path="/" component={ HomePage }/>
-          <Route path="/search/" component={ SearchResults } />
+          <Route path="/search/:input" component={ SearchResults } />
         </Switch>
       </Router>
     </div>

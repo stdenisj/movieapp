@@ -41,7 +41,7 @@ export default class Navigation extends Component {
                     <FormControl variant="outline-success" type='submit' value="Search"/>
                 </Form>
             </Navbar.Collapse>
-                { this.state.submit ? <Redirect to={{ pathname: '/search/',  results: this.state.results }}  /> : null }
+                { this.state.submit ? <Redirect to={{ pathname: `/search/${this.state.formInput}`,  results: this.state.results }}  /> : null }
                 { this.state.home ? <Redirect to='/'/> : null }
             </Navbar>
         )

@@ -2,8 +2,14 @@ import React from 'react'
 import { Accordion, Button } from 'react-bootstrap'
 
 export default function MoviesCarouselItem(props, i, setFoundMovie, keyValue) {
-    const image = `https://image.tmdb.org/t/p/w200${props.poster_path}`
-    
+    let image = ''
+    if ( props.poster_path ) {
+        image = `https://image.tmdb.org/t/p/w200${props.poster_path}`
+    } else if ( props.backdrop_path ) {
+        image = `https://image.tmdb.org/t/p/w200${props.backdrop_path}`
+    } else {
+        image = `http://placehold.it/200x200&text=${props.title}`
+    }
     return (
         <Accordion.Toggle as={ Button } variant="link" eventKey={keyValue} key={ i }>
             <a href='#' className='car-image' >

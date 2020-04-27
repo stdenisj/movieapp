@@ -3,7 +3,7 @@ import { Card, Col, Image ,Row } from 'react-bootstrap'
 
 export default function DisplayMovie(props) {
     let image = ''
-    if ( props.backdrop_path !== undefined) {
+    if ( props.backdrop_path ) {
         image = `https://image.tmdb.org/t/p/w300${props.backdrop_path}`
     } else {
         image = `https://image.tmdb.org/t/p/w300${props.poster_path}`
