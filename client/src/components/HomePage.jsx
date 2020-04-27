@@ -19,27 +19,64 @@ export default class HomePage extends Component {
         Thriller: {}           
     }
 
-        getMovies = async() => {
+        getActMovies = async() => {
             try {
-                let res = await axios.get('/api/movies');
+                let res = await axios.get('/api/movies/action');
                 const data = res.data;
-                this.setState({         
-                    act: data.act,
-                    adv: data.adv,
-                    com: data.com,
-                    fam: data.fam,
-                    thr: data.thr,
-                });
+                this.setState({ act: data.act });
+            }
+            catch(e) {
+                console.log(e)
+            }
+        }
+        getAdvMovies = async() => {
+            try {
+                let res = await axios.get('/api/movies/adventure');
+                const data = res.data;
+                this.setState({ adv: data.adv });
+            }
+            catch(e) {
+                console.log(e)
+            }
+        }
+        getComMovies = async() => {
+            try {
+                let res = await axios.get('/api/movies/comedy');
+                const data = res.data;
+                this.setState({ com: data.com });
+            }
+            catch(e) {
+                console.log(e)
+            }
+        }
+        getFamMovies = async() => {
+            try {
+                let res = await axios.get('/api/movies/family');
+                const data = res.data;
+                this.setState({ fam: data.fam });
+            }
+            catch(e) {
+                console.log(e)
+            }
+        }
+        getThrMovies = async() => {
+            try {
+                let res = await axios.get('/api/movies/thriller');
+                const data = res.data;
+                this.setState({ thr: data.thr, });
             }
             catch(e) {
                 console.log(e)
             }
         }
 
-    componentDidMount() {
-        this.getMovies();
+    componentWillMount() {
+        this.getActMovies();
+        this.getAdvMovies();
+        this.getComMovies();
+        this.getFamMovies();
+        this.getThrMovies();
     }
-
     
     setMovie = (foundMovie, genre) => {
         if( genre === 'Action') {

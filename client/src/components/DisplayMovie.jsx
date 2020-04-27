@@ -2,8 +2,12 @@ import React from 'react'
 import { Card, Col, Image ,Row } from 'react-bootstrap'
 
 export default function DisplayMovie(props) {
-    let image = `https://image.tmdb.org/t/p/w500${props.backdrop_path}`
-    
+    let image = ''
+    if ( props.backdrop_path !== undefined) {
+        image = `https://image.tmdb.org/t/p/w300${props.backdrop_path}`
+    } else {
+        image = `https://image.tmdb.org/t/p/w300${props.poster_path}`
+    }
     return (
     <Card style={{ height: '25vw' }}>
         <Card.Body>
