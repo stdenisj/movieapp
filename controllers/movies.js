@@ -77,8 +77,10 @@ movieRouter.get('/:movie', async(req, res) => {
     let single = await axios.get(`http://www.omdbapi.com/?t=${title}&type=movie&apikey=${key}`);
     let movies = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${APIKey}&language=en-US&query=${title}&include_adult=false`)
     let actors = await axios.get(`https://api.themoviedb.org/3/search/person?api_key=${APIKey}&language=en-US&query=${title}&include_adult=false`)
+    let actor = await axios.get(`https://api.themoviedb.org/3/person/${actors.data.results[0].id}?api_key=${APIKey}&language=en-US`)
+    let relatedMovies = await axios.get(`https://api.themoviedb.org/3/person/${actors.data.results[0].id}/movie_credits?api_key=${APIKey}&language=en-US`)
     let response = []
-    response.push(single.data, movies.data, actors.data)
+    response.push(single.data, movies.data, actor.data, relatedMovies.data)
     res.send(response);
   }
   catch (e) {

@@ -20,6 +20,7 @@ export default class Navigation extends Component {
         event.preventDefault();
         let res = await axios.get(`/api/movies/:${this.state.formInput}`);
         let data = res.data;
+        this.returnHome()
         this.setState({ submit: true, results: data })
         this.setState({ submit: false, home: false })
     }
@@ -30,7 +31,7 @@ export default class Navigation extends Component {
     render() {
         return (
             <Navbar bg="dark" variant='dark' expand="lg">
-            <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+            <Navbar.Brand href="/">Movies</Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
@@ -41,7 +42,7 @@ export default class Navigation extends Component {
                     <FormControl variant="outline-success" type='submit' value="Search"/>
                 </Form>
             </Navbar.Collapse>
-                { this.state.submit ? <Redirect to={{ pathname: `/search/${this.state.formInput}`,  results: this.state.results }}  /> : null }
+                { this.state.submit ? <Redirect to={{ pathname: `/search/${this.state.formInput}`,  results: this.state.results }} /> : null }
                 { this.state.home ? <Redirect to='/'/> : null }
             </Navbar>
         )

@@ -13,7 +13,19 @@ export default function DisplayMovie(props) {
         <Card.Body>
             <Row>
                 <Col>
-                    <Image fluid src={ image }/>
+                    {/* <Row> */}
+                        <Image fluid src={ image }/>
+                    {/* </Row>
+                    <Row>
+                    {/* <iframe
+                        width='280'
+                        height='157'
+                        src='https://www.youtube.com/embed/SUXWAEX2jlg'
+                        frameborder='0'
+                        allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
+                        allowfullscreen='allowfullscreen'
+                        ></iframe> */}
+                    {/* </Row> */}
                 </Col>
                 <Col>
                     <h3>{ props.title}</h3>

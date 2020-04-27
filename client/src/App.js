@@ -4,6 +4,7 @@ import './App.css';
 import HomePage from './components/HomePage';
 import Navigation from './components/Navigation';
 import SearchResults from './components/SearchResults';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/search/:input" component={ SearchResults } />
         </Switch>
       </Router>
+      { Footer() }
     </div>
   );
 }
