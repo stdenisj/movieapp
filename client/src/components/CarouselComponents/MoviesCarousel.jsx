@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Accordion, Carousel, Container } from 'react-bootstrap'
+import { Carousel, Container } from 'react-bootstrap'
 import MoviesCarouselPage from './MoviesCarouselPage'
 
 export default class MoviesCarousel extends Component {

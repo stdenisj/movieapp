@@ -4,6 +4,7 @@ import { Accordion, Container, Row} from 'react-bootstrap'
 import MoviesCarousel from './CarouselComponents/MoviesCarousel'
 import DisplayMovie from './DisplayMovie'
 import SearchResultsCard from './SeachResultsCard'
+import axios from 'axios'
 
 export default class SearchResults extends Component {
     state = {
@@ -12,6 +13,7 @@ export default class SearchResults extends Component {
         movies: [],
         relatedMovies: [],
         single: {},
+
     }
 
     componentWillMount() {
@@ -27,7 +29,21 @@ export default class SearchResults extends Component {
         }
     }
 
-    setMovie = (foundMovie, genre) => { this.setState({ movie: foundMovie}) };
+    getTrailer = async(movie) => {
+        try {
+            let response = await axios.get(`/api/movies/trailer/${movie.id}`)
+            let trailer = `https://www.youtube.com/embed/${response.data}`
+            this.setState({ movieTrailer: trailer })
+        }
+        catch(e){
+            console.log(e)
+        }
+    }
+
+    setMovie = (foundMovie, genre) => { 
+        this.setState({ movie: foundMovie})
+        this.getTrailer(foundMovie)
+    };
 
     render() {
         let actorMovies = `Movies staring ${ this.state.actor.name }`
@@ -54,7 +70,7 @@ export default class SearchResults extends Component {
                                 keyValue="0"/>
                             }
                             <Accordion.Collapse eventKey="0">
-                                { DisplayMovie(this.state.movie) }
+                                <DisplayMovie movie={ this.state.movie } trailer={ this.state.movieTrailer }/>
                             </Accordion.Collapse>
                             <MoviesCarousel 
                                     movieList={ this.state.movies } 
@@ -62,7 +78,7 @@ export default class SearchResults extends Component {
                                     setMovie={ this.setMovie }   
                                     keyValue="1"/>
                             <Accordion.Collapse eventKey="1">
-                                    { DisplayMovie(this.state.movie) }
+                                    < DisplayMovie movie={ this.state.movie } trailer={ this.state.movieTrailer }/>
                             </Accordion.Collapse>
                         </Accordion>
                         </Container>

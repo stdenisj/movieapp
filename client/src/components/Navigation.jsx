@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { Component } from 'react'
-import { Redirect, Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { Form, FormControl, Nav, Navbar } from 'react-bootstrap'
 
 export default class Navigation extends Component {

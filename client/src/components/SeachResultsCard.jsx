@@ -10,14 +10,6 @@ export default function SeachResultsCard(props) {
             <Row>
                 <Col>
                     <Image fluid src={ image }/>
-                    {/* <iframe
-                        width='280'
-                        height='157'
-                        src='https://www.youtube.com/embed/SUXWAEX2jlg'
-                        frameborder='0'
-                        allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
-                        allowfullscreen='allowfullscreen'
-                        ></iframe> */}
                 </Col>
                 <Col>
                     <h3>{ props.name}</h3>

@@ -16,7 +16,8 @@ export default class HomePage extends Component {
         Adventure: {},
         Comedy: {},
         Family: {},
-        Thriller: {}           
+        Thriller: {},
+        movieTrailer: '',       
     }
 
         getActMovies = async() => {
@@ -70,6 +71,17 @@ export default class HomePage extends Component {
             }
         }
 
+        getTrailer = async(movie) => {
+            try {
+                let response = await axios.get(`/api/movies/trailer/${movie.id}`)
+                let trailer = `https://www.youtube.com/embed/${response.data}`
+                this.setState({ movieTrailer: trailer })
+            }
+            catch(e){
+                console.log(e)
+            }
+        }
+
     componentWillMount() {
         this.getActMovies();
         this.getAdvMovies();
@@ -90,6 +102,7 @@ export default class HomePage extends Component {
         } else {
             this.setState({ Thriller: foundMovie})
         }
+        this.getTrailer(foundMovie)
     }
 
     render() {
@@ -103,27 +116,27 @@ export default class HomePage extends Component {
                 <Accordion>
                     <MoviesCarousel movieList={ this.state.act } title='Action'     setMovie={ this.setMovie }   keyValue="0"/>
                     <Accordion.Collapse eventKey="0">
-                        { DisplayMovie(this.state.Action) }
+                        <DisplayMovie movie={ this.state.Action } trailer={ this.state.movieTrailer }/>
                     </Accordion.Collapse>
 
                     <MoviesCarousel movieList={ this.state.adv } title='Adventure'  setMovie={ this.setMovie }  keyValue="1"/>
                     <Accordion.Collapse eventKey="1">
-                        { DisplayMovie(this.state.Adventure) }
+                        < DisplayMovie movie={ this.state.Adventure } trailer={ this.state.movieTrailer }/>
                     </Accordion.Collapse>
 
                     <MoviesCarousel movieList={ this.state.com } title='Comedy'     setMovie={ this.setMovie }  keyValue="2"/>
                     <Accordion.Collapse eventKey="2">
-                        { DisplayMovie(this.state.Comedy) }
+                        < DisplayMovie movie={ this.state.Comedy } trailer={ this.state.movieTrailer }/>
                     </Accordion.Collapse>
 
                     <MoviesCarousel movieList={ this.state.fam } title='Family'     setMovie={ this.setMovie }  keyValue="3"/>
                     <Accordion.Collapse eventKey="3">
-                        { DisplayMovie(this.state.Family) }
+                        < DisplayMovie movie={ this.state.Family } trailer={ this.state.movieTrailer }/>
                     </Accordion.Collapse>
 
                     <MoviesCarousel movieList={ this.state.thr } title='Thriller'   setMovie={ this.setMovie }  keyValue="4"/>
                     <Accordion.Collapse eventKey="4">
-                        { DisplayMovie(this.state.Thriller) }
+                        < DisplayMovie movie={ this.state.Thriller } trailer={ this.state.movieTrailer }/>
                     </Accordion.Collapse>
                 </Accordion>
             </Container>

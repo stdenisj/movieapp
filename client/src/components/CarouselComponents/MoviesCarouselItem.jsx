@@ -12,9 +12,8 @@ export default function MoviesCarouselItem(props, i, setFoundMovie, keyValue) {
     }
     return (
         <Accordion.Toggle as={ Button } variant="link" eventKey={keyValue} key={ i }>
-            <a href='#' className='car-image' >
                 <img
-                    className="d-inline w-20"
+                    className="d-inline w-20 car-image"
                     src={ image }
                     alt="First slide"
                     style={{
@@ -26,7 +25,6 @@ export default function MoviesCarouselItem(props, i, setFoundMovie, keyValue) {
                     onMouseEnter={ (event) => { event.preventDefault(); 
                         setFoundMovie(props)} }
                 />
-            </a>
         </Accordion.Toggle>
     )
 }

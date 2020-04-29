@@ -1,41 +1,52 @@
-import React from 'react'
-import { Card, Col, Image ,Row } from 'react-bootstrap'
+import React, { Component } from 'react'
+import { Button, Card, Col, Image ,Row } from 'react-bootstrap'
 
-export default function DisplayMovie(props) {
-    let image = ''
-    if ( props.backdrop_path ) {
-        image = `https://image.tmdb.org/t/p/w300${props.backdrop_path}`
-    } else {
-        image = `https://image.tmdb.org/t/p/w300${props.poster_path}`
+export default class DisplayMovie extends Component {
+    state = {
+        play: false
     }
-    return (
-    <Card style={{ height: '25vw' }}>
-        <Card.Body>
-            <Row>
-                <Col>
-                    {/* <Row> */}
-                        <Image fluid src={ image }/>
-                    {/* </Row>
+
+    toggleTrailer = () => {
+        this.setState({ play: !this.state.play })
+    }
+
+    render() {
+        let movie = this.props.movie
+        let image = ''
+        if ( movie.backdrop_path ) {
+            image = `https://image.tmdb.org/t/p/w400${movie.backdrop_path}`
+        } else {
+            image = `https://image.tmdb.org/t/p/w400${movie.poster_path}`
+        }
+        return (
+            <Card style={{ height: '25vw' }}>
+                <Card.Body>
                     <Row>
-                    {/* <iframe
-                        width='280'
-                        height='157'
-                        src='https://www.youtube.com/embed/SUXWAEX2jlg'
-                        frameborder='0'
-                        allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
-                        allowfullscreen='allowfullscreen'
-                        ></iframe> */}
-                    {/* </Row> */}
-                </Col>
-                <Col>
-                    <h3>{ props.title}</h3>
-                    <h6>Rating: { props.vote_average }  -  Total votes: { props.vote_count }</h6>
-                    <Card.Text>
-                    { props.overview }
-                    </Card.Text>
-                </Col>
-            </Row>
-        </Card.Body>
-    </Card>
-    )
+                        <Col>
+                            { this.state.play 
+                            ? <iframe
+                                title='movietrailer'
+                                width='400'
+                                height='225'
+                                src={ this.props.trailer }
+                                frameBorder='0'
+                                allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
+                                allowFullScreen='allowfullscreen'
+                                ><Image fluid src={ image }/>  </iframe>
+                            : <Image fluid src={ image }/> 
+                        }
+                        <Button onClick={ this.toggleTrailer }>Play Trailer</Button>
+                        </Col>
+                        <Col>
+                            <h3>{ movie.title}</h3>
+                            <h6>Rating: { movie.vote_average }  -  Total votes: { movie.vote_count }</h6>
+                            <Card.Text>
+                            { movie.overview }
+                            </Card.Text>
+                        </Col>
+                    </Row>
+                </Card.Body>
+            </Card>
+        )
+    }
 }
