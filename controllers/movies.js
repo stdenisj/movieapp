@@ -72,7 +72,9 @@ movieRouter.get('/trailer/:movieId', async(req, res) => {
   try {
     let movie = req.params.movieId
     let response = await axios.get(`https://api.themoviedb.org/3/movie/${movie}/videos?api_key=${APIKey}&language=en-US`)
-    res.send(response.data.results[0].key)
+    if (response.data.results[0].key) {
+      res.send(response.data.results[0].key)
+    }
   }
   catch (e) {
     console.log(e);

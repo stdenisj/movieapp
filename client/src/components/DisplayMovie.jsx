@@ -32,10 +32,17 @@ export default class DisplayMovie extends Component {
                                 frameBorder='0'
                                 allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
                                 allowFullScreen='allowfullscreen'
-                                ><Image fluid src={ image }/>  </iframe>
-                            : <Image fluid src={ image }/> 
+                                ></iframe>
+                            : <Image src={ image } style={{ width:'400px', height:'225px' }}/> 
                         }
-                        <Button onClick={ this.toggleTrailer }>Play Trailer</Button>
+                            <div style={{ margin: '5px' }}>
+                                <Button onClick={ this.toggleTrailer } size='sm'>
+                                    { this.state.play
+                                        ? 'Close Trailer'
+                                        : 'Play Trailer'
+                                    }
+                                </Button>
+                            </div>
                         </Col>
                         <Col>
                             <h3>{ movie.title}</h3>

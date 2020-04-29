@@ -19,68 +19,66 @@ export default class HomePage extends Component {
         Thriller: {},   
     }
 
-        getActMovies = async() => {
-            try {
-                let res = await axios.get('/api/movies/action');
-                const data = res.data;
-                this.setState({ act: data.act });
-            }
-            catch(e) {
-                console.log(e)
-            }
+    getActMovies = async() => {
+        try {
+            let res = await axios.get('/api/movies/action');
+            const data = res.data;
+            this.setState({ act: data.act });
         }
-        getAdvMovies = async() => {
-            try {
-                let res = await axios.get('/api/movies/adventure');
-                const data = res.data;
-                this.setState({ adv: data.adv });
-            }
-            catch(e) {
-                console.log(e)
-            }
+        catch(e) {
+            console.log(e)
         }
-        getComMovies = async() => {
-            try {
-                let res = await axios.get('/api/movies/comedy');
-                const data = res.data;
-                this.setState({ com: data.com });
-            }
-            catch(e) {
-                console.log(e)
-            }
+    }
+    getAdvMovies = async() => {
+        try {
+            let res = await axios.get('/api/movies/adventure');
+            const data = res.data;
+            this.setState({ adv: data.adv });
         }
-        getFamMovies = async() => {
-            try {
-                let res = await axios.get('/api/movies/family');
-                const data = res.data;
-                this.setState({ fam: data.fam });
-            }
-            catch(e) {
-                console.log(e)
-            }
+        catch(e) {
+            console.log(e)
         }
-        getThrMovies = async() => {
-            try {
-                let res = await axios.get('/api/movies/thriller');
-                const data = res.data;
-                this.setState({ thr: data.thr, });
-            }
-            catch(e) {
-                console.log(e)
-            }
+    }
+    getComMovies = async() => {
+        try {
+            let res = await axios.get('/api/movies/comedy');
+            const data = res.data;
+            this.setState({ com: data.com });
         }
+        catch(e) {
+            console.log(e)
+        }
+    }
+    getFamMovies = async() => {
+        try {
+            let res = await axios.get('/api/movies/family');
+            const data = res.data;
+            this.setState({ fam: data.fam });
+        }
+        catch(e) {
+            console.log(e)
+        }
+    }
+    getThrMovies = async() => {
+        try {
+            let res = await axios.get('/api/movies/thriller');
+            const data = res.data;
+            this.setState({ thr: data.thr, });
+        }
+        catch(e) {
+            console.log(e)
+        }
+    }
 
-        getTrailer = async(movie) => {
-            if (movie.trailer === undefined) {
-                try {
-                    let response = await axios.get(`/api/movies/trailer/${movie.id}`)
-                    let trailer = `https://www.youtube.com/embed/${response.data}`
-                    movie.trailer = trailer
-                }
-                catch(e){
-                    console.log(e)
-                }
-            } else { return }
+    getTrailer = async(movie, ) => {
+            try {
+                let response = await axios.get(`/api/movies/trailer/${movie.id}`)
+                let trailer = `https://www.youtube.com/embed/${response.data}`
+                movie.trailer = trailer
+            }
+            catch(e){
+                console.log(e)
+            }
         }
 
     componentWillMount() {
