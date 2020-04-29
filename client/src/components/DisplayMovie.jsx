@@ -28,7 +28,7 @@ export default class DisplayMovie extends Component {
                                 title='movietrailer'
                                 width='400'
                                 height='225'
-                                src={ this.props.trailer }
+                                src={ movie.trailer }
                                 frameBorder='0'
                                 allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
                                 allowFullScreen='allowfullscreen'

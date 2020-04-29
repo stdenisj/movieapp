@@ -30,14 +30,16 @@ export default class SearchResults extends Component {
     }
 
     getTrailer = async(movie) => {
-        try {
-            let response = await axios.get(`/api/movies/trailer/${movie.id}`)
-            let trailer = `https://www.youtube.com/embed/${response.data}`
-            this.setState({ movieTrailer: trailer })
-        }
-        catch(e){
-            console.log(e)
-        }
+        if (movie.trailer === undefined) {
+            try {
+                let response = await axios.get(`/api/movies/trailer/${movie.id}`)
+                let trailer = `https://www.youtube.com/embed/${response.data}`
+                movie.trailer = trailer
+            }
+            catch(e){
+                console.log(e)
+            }
+        } else { return }
     }
 
     setMovie = (foundMovie, genre) => { 
@@ -70,7 +72,7 @@ export default class SearchResults extends Component {
                                 keyValue="0"/>
                             }
                             <Accordion.Collapse eventKey="0">
-                                <DisplayMovie movie={ this.state.movie } trailer={ this.state.movieTrailer }/>
+                                <DisplayMovie movie={ this.state.movie }/>
                             </Accordion.Collapse>
                             <MoviesCarousel 
                                     movieList={ this.state.movies } 
@@ -78,7 +80,7 @@ export default class SearchResults extends Component {
                                     setMovie={ this.setMovie }   
                                     keyValue="1"/>
                             <Accordion.Collapse eventKey="1">
-                                    < DisplayMovie movie={ this.state.movie } trailer={ this.state.movieTrailer }/>
+                                    < DisplayMovie movie={ this.state.movie }/>
                             </Accordion.Collapse>
                         </Accordion>
                         </Container>

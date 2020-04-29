@@ -16,8 +16,7 @@ export default class HomePage extends Component {
         Adventure: {},
         Comedy: {},
         Family: {},
-        Thriller: {},
-        movieTrailer: '',       
+        Thriller: {},   
     }
 
         getActMovies = async() => {
@@ -72,14 +71,16 @@ export default class HomePage extends Component {
         }
 
         getTrailer = async(movie) => {
-            try {
-                let response = await axios.get(`/api/movies/trailer/${movie.id}`)
-                let trailer = `https://www.youtube.com/embed/${response.data}`
-                this.setState({ movieTrailer: trailer })
-            }
-            catch(e){
-                console.log(e)
-            }
+            if (movie.trailer === undefined) {
+                try {
+                    let response = await axios.get(`/api/movies/trailer/${movie.id}`)
+                    let trailer = `https://www.youtube.com/embed/${response.data}`
+                    movie.trailer = trailer
+                }
+                catch(e){
+                    console.log(e)
+                }
+            } else { return }
         }
 
     componentWillMount() {
@@ -116,27 +117,27 @@ export default class HomePage extends Component {
                 <Accordion>
                     <MoviesCarousel movieList={ this.state.act } title='Action'     setMovie={ this.setMovie }   keyValue="0"/>
                     <Accordion.Collapse eventKey="0">
-                        <DisplayMovie movie={ this.state.Action } trailer={ this.state.movieTrailer }/>
+                        <DisplayMovie movie={ this.state.Action }/>
                     </Accordion.Collapse>
 
                     <MoviesCarousel movieList={ this.state.adv } title='Adventure'  setMovie={ this.setMovie }  keyValue="1"/>
                     <Accordion.Collapse eventKey="1">
-                        < DisplayMovie movie={ this.state.Adventure } trailer={ this.state.movieTrailer }/>
+                        < DisplayMovie movie={ this.state.Adventure } />
                     </Accordion.Collapse>
 
                     <MoviesCarousel movieList={ this.state.com } title='Comedy'     setMovie={ this.setMovie }  keyValue="2"/>
                     <Accordion.Collapse eventKey="2">
-                        < DisplayMovie movie={ this.state.Comedy } trailer={ this.state.movieTrailer }/>
+                        < DisplayMovie movie={ this.state.Comedy } />
                     </Accordion.Collapse>
 
                     <MoviesCarousel movieList={ this.state.fam } title='Family'     setMovie={ this.setMovie }  keyValue="3"/>
                     <Accordion.Collapse eventKey="3">
-                        < DisplayMovie movie={ this.state.Family } trailer={ this.state.movieTrailer }/>
+                        < DisplayMovie movie={ this.state.Family } />
                     </Accordion.Collapse>
 
                     <MoviesCarousel movieList={ this.state.thr } title='Thriller'   setMovie={ this.setMovie }  keyValue="4"/>
                     <Accordion.Collapse eventKey="4">
-                        < DisplayMovie movie={ this.state.Thriller } trailer={ this.state.movieTrailer }/>
+                        < DisplayMovie movie={ this.state.Thriller } />
                     </Accordion.Collapse>
                 </Accordion>
             </Container>

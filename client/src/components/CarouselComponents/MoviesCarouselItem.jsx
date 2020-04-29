@@ -19,12 +19,12 @@ export default function MoviesCarouselItem(props, i, setFoundMovie, keyValue) {
                     style={{
                         width: 'fit-content',
                         height: '20vw'
-                        }}
+                    }}
                     onClick={ (event) => { event.preventDefault(); 
-                                            setFoundMovie(props)} }
+                        setFoundMovie(props)} }
                     onMouseEnter={ (event) => { event.preventDefault(); 
                         setFoundMovie(props)} }
-                />
+                    />
         </Accordion.Toggle>
     )
 }
