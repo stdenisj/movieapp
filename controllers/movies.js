@@ -12,8 +12,21 @@ movieRouter.get('/action', async(req, res) => {
   try {
     let rAct = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${APIKey}&include_adult=false&include_video=false&with_genres=28`)
     let rActT = await axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${APIKey}&include_adult=false&include_video=false&with_genres=28&page=2`)
-    let data = { act: rAct.data.results.concat(rActT.data.results) }
-    res.send(data);
+    let data = { act: rAct.data.results.concat(rActT.data.results) };
+    let arr = []
+    data.act.map( async(movie) => {
+      try{
+        let response = await axios.get(`/api/movies/trailer/${movie.id}`)
+        let trailer = `https://www.youtube.com/embed/${response.data}`
+        movie.trailer = trailer;
+        arr.push(movie)
+      }
+      catch(e){
+
+      }
+    });
+    console.log(arr)
+    // res.send(data);
   }
   catch (e){
     console.log(e);
